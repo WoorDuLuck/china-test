@@ -210,6 +210,9 @@ class TestSessionService
                 'text'         => $q['text'],
                 'image'        => $q['image'],
                 'options'      => $q['options'],
+                'option_texts' => collect($q['options'])->mapWithKeys(
+                    fn (array $o) => [$o['id'] => $o['text']]
+                )->all(),
                 'user_answer'  => $userAnswer,
                 'correct'      => $check['correct'],
                 'status'       => $statusById[$q['id']]['status'] ?? $check['status'],
